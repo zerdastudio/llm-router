@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "llm-router"
-version = "1.0.0"
+version = "2.0.0"
 description = "Route LLM calls across providers: fallback chains per role, spending caps, rate limits, a cost ledger."
 readme = "README.md"
 license = { text = "MIT" }

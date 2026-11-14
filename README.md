@@ -13,7 +13,8 @@ Pure Python, asyncio, no required dependencies. OpenAI, Anthropic, and OpenAI-co
 Gemini, DeepSeek, local servers) through optional SDKs.
 
 **Where it comes from.** This is the routing layer of a multi-agent system I built and have run in production
-for months, against live providers, rewritten here as a standalone library with its own test suite.
+for months, against live providers, rewritten here as a standalone library with its own test suite. Earlier
+versions lived inside that system and were never published; this standalone rewrite starts at 2.0.
 
 ## When to use it
 
@@ -205,7 +206,9 @@ a whole number of tokens, a rate limit below 1.
   anyway, because a request with no model to try can only fail.
 - Token counts for the rate limiter are estimated (about four characters a token) before the call.
 - Text only: no streaming, no tool calls, no structured-output validation.
-- The test suite runs offline: in CI the transports run against stand-in SDK clients.
+- The test suite runs offline: in CI the transports run against stand-in SDK clients. The live check is
+  `tests/test_live.py`, skipped without keys: on 14 November 2026 it passed against the OpenAI (`gpt-4o-mini`)
+  and Anthropic (`claude-sonnet-4-6`) APIs, a real call through the router and a wrong key for each.
 
 ## License
 
