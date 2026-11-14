@@ -1,0 +1,66 @@
+# llm-router configuration example.
+#
+# Keys are never written here: each provider names the environment variables that hold them. A variable that
+# is missing or empty is skipped, and a provider with no keys drops out with a warning.
+#
+# Prices are USD per million tokens, and they are EXAMPLE VALUES: check your provider's current price list.
+# Model names change too; use the ones your accounts offer.
+
+[router]
+fallback = ["router-cheap"]   # appended to every role's chain
+budget_usd = 5.0              # default cap per role and window
+window_hours = 24             # 0 = one window that never reopens
+max_chain = 4                 # at most this many models per request
+breaker_threshold = 3         # failures in a row before a model is skipped...
+breaker_cooldown = 120        # ...for this many seconds
+
+[providers.openai]
+transport = "openai"
+api_key_env = ["OPENAI_API_KEY"]
+max_tokens_param = "max_completion_tokens"
+rpm = 500
+tpm = 200000
+
+[providers.anthropic]
+transport = "anthropic"
+api_key_env = ["ANTHROPIC_API_KEY"]
+rpm = 50
+
+[providers.openrouter]
+transport = "openai"
+base_url = "https://openrouter.ai/api/v1"
+api_key_env = ["OPENROUTER_API_KEY"]
+use_reported_cost = true      # OpenRouter puts the real cost in the usage block
+
+[models.gpt-small]
+provider = "openai"
+model = "gpt-4o-mini"
+input_per_m = 0.15
+output_per_m = 0.60
+cache_read_per_m = 0.075
+
+[models.claude]
+provider = "anthropic"
+model = "claude-sonnet-4-5"
+input_per_m = 3.0
+output_per_m = 15.0
+cache_read_per_m = 0.30
+cache_write_per_m = 3.75
+max_output_tokens = 2048
+output_ceiling = 8192         # one retry with this much room if it spends everything thinking
+timeout = 120
+
+[models.router-cheap]
+provider = "openrouter"
+model = "meta-llama/llama-3.3-70b-instruct"
+input_per_m = 0.10
+output_per_m = 0.30
+
+[roles.summarize]
+chain = ["gpt-small", "claude"]
+budget_usd = 1.0
+
+[roles.review]
+chain = ["claude", "gpt-small"]
+budget_usd = 10.0
+window_hours = 168
