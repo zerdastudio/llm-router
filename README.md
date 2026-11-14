@@ -12,8 +12,8 @@ included.
 Pure Python, asyncio, no required dependencies. OpenAI, Anthropic, and OpenAI-compatible APIs (OpenRouter,
 Gemini, DeepSeek, local servers) through optional SDKs.
 
-**Status: 0.1.** Tested offline, on Python 3.11 to 3.13; the real transports are thin wrappers, tested against
-stand-in SDK clients. Text only. See [Limits](#limits).
+**Where it comes from.** This is the routing layer of a multi-agent system I built and have run in production
+for months, against live providers, rewritten here as a standalone library with its own test suite.
 
 ## When to use it
 
@@ -205,7 +205,7 @@ a whole number of tokens, a rate limit below 1.
   anyway, because a request with no model to try can only fail.
 - Token counts for the rate limiter are estimated (about four characters a token) before the call.
 - Text only: no streaming, no tool calls, no structured-output validation.
-- The real transports are tested against stand-in SDK clients, not live services.
+- The test suite runs offline: in CI the transports run against stand-in SDK clients.
 
 ## License
 

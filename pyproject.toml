@@ -4,10 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "llm-router"
-version = "0.1.0"
+version = "1.0.0"
 description = "Route LLM calls across providers: fallback chains per role, spending caps, rate limits, a cost ledger."
 readme = "README.md"
 license = { text = "MIT" }
+authors = [{ name = "Daniel Accatino" }]
 requires-python = ">=3.11"
 dependencies = []
 classifiers = [
@@ -15,6 +16,9 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Framework :: AsyncIO",
 ]
+
+[project.urls]
+Repository = "https://github.com/zerdastudio/llm-router"
 
 [project.optional-dependencies]
 openai = ["openai>=1.40"]
