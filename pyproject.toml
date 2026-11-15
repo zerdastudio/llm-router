@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "llm-router"
+name = "zerda-llm-router"
 version = "2.0.0"
 description = "Route LLM calls across providers: fallback chains per role, spending caps, rate limits, a cost ledger."
 readme = "README.md"
@@ -18,7 +18,9 @@ classifiers = [
 ]
 
 [project.urls]
+Homepage = "https://github.com/zerdastudio"
 Repository = "https://github.com/zerdastudio/llm-router"
+Changelog = "https://github.com/zerdastudio/llm-router/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 openai = ["openai>=1.40"]

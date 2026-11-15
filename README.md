@@ -101,6 +101,13 @@ ledger says so instead of writing zero.
 ## Quick start
 
 ```bash
+pip install zerda-llm-router                       # the library, no dependencies
+pip install "zerda-llm-router[openai,anthropic]"    # with the provider SDKs
+```
+
+The import name is `llm_router`. To run the tests and the demo, work from a clone:
+
+```bash
 git clone https://github.com/zerdastudio/llm-router
 cd llm-router
 python -m venv .venv && source .venv/bin/activate     # Windows: .venv\Scripts\activate
@@ -209,6 +216,16 @@ a whole number of tokens, a rate limit below 1.
 - The test suite runs offline: in CI the transports run against stand-in SDK clients. The live check is
   `tests/test_live.py`, skipped without keys: on 14 November 2026 it passed against the OpenAI (`gpt-4o-mini`)
   and Anthropic (`claude-sonnet-4-6`) APIs, a real call through the router and a wrong key for each.
+
+## Part of a larger system
+
+This library is one piece of a multi-agent system I built, rewritten to stand on its own. The other pieces
+published so far:
+
+- [vector-memory](https://github.com/zerdastudio/vector-memory): long-term memory for an agent in one SQLite file, built so it does not quietly rot.
+- [ai-csv-batch](https://github.com/zerdastudio/ai-csv-batch): every row of a CSV through Claude, GPT or Gemini, with retries, resume and a cost log.
+
+More about the system on my [GitHub profile](https://github.com/zerdastudio).
 
 ## License
 
