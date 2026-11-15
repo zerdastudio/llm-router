@@ -105,7 +105,8 @@ pip install zerda-llm-router                       # the library, no dependencie
 pip install "zerda-llm-router[openai,anthropic]"    # with the provider SDKs
 ```
 
-The import name is `llm_router`. To run the tests and the demo, work from a clone:
+The import name is `llm_router`. Not `pip install llm-router`: that is another project, with the same
+import name. To run the tests and the demo, work from a clone:
 
 ```bash
 git clone https://github.com/zerdastudio/llm-router
@@ -154,7 +155,7 @@ attempts cost, `unknown` counts the attempts that failed in transit, whose cost 
 
 ## Configuration
 
-See [`examples/router.example.toml`](examples/router.example.toml). In short:
+See [`examples/router.example.toml`](https://github.com/zerdastudio/llm-router/blob/main/examples/router.example.toml). In short:
 
 ```toml
 [providers.openrouter]
@@ -219,11 +220,13 @@ a whole number of tokens, a rate limit below 1.
 
 ## Part of a larger system
 
-This library is one piece of a multi-agent system I built, rewritten to stand on its own. The other pieces
+This library is one piece of a multi-agent system I built, rewritten to stand on its own. The other piece
 published so far:
 
 - [vector-memory](https://github.com/zerdastudio/vector-memory): long-term memory for an agent in one SQLite file, built so it does not quietly rot.
-- [ai-csv-batch](https://github.com/zerdastudio/ai-csv-batch): every row of a CSV through Claude, GPT or Gemini, with retries, resume and a cost log.
+
+Also by me, not part of the system: [ai-csv-batch](https://github.com/zerdastudio/ai-csv-batch), every row of a CSV
+through Claude, GPT or Gemini, with retries, resume and a cost log.
 
 More about the system on my [GitHub profile](https://github.com/zerdastudio).
 
